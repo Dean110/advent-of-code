@@ -11,7 +11,7 @@ public class App {
 
     public static void main(String[] args) {
         InputReader inputReader = new TextFileInputReaderImpl(new TextFileReader(Path.of(DEPTHS_INPUT_TXT_PATH)));
-        DepthIncreasesCounter counter = new DepthIncreasesCounter();
+        DepthIncreasesCounter counter = new SlidingWindowDepthIncreasesCounter();
         System.out.println(counter.calculate(inputReader.processDepthsInput()));
     }
 }

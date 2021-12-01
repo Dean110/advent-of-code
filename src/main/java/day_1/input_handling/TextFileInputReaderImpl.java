@@ -16,7 +16,7 @@ public class TextFileInputReaderImpl implements InputReader {
         String input = fileReader.readFile();
         String[] lineItems = input.split("\n");
         return Arrays.stream(lineItems)
-                     .map(str -> Integer.parseInt(str))
-                     .collect(Collectors.toList());
+                .map(str -> Integer.parseInt(str))
+                .collect(Collectors.toList());
     }
 }
