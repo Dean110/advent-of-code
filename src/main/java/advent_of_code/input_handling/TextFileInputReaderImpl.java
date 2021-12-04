@@ -1,4 +1,4 @@
-package day_1.input_handling;
+package advent_of_code.input_handling;
 
 import java.util.Arrays;
 import java.util.List;
@@ -12,11 +12,19 @@ public class TextFileInputReaderImpl implements InputReader {
     }
 
     @Override
-    public List<Integer> processDepthsInput() {
+    public List<Integer> processDepthInputs() {
         String input = fileReader.readFile();
         String[] lineItems = input.split("\n");
         return Arrays.stream(lineItems)
                 .map(str -> Integer.parseInt(str))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<String> processStringInputs() {
+        return Arrays.stream(fileReader.readFile()
+                     .split("\n"))
+                     .toList().stream()
+                              .collect(Collectors.toList());
     }
 }

@@ -1,8 +1,8 @@
-package day_1;
+package advent_of_code.day_1;
 
-import day_1.input_handling.InputReader;
-import day_1.input_handling.TextFileInputReaderImpl;
-import day_1.input_handling.TextFileReader;
+import advent_of_code.input_handling.InputReader;
+import advent_of_code.input_handling.TextFileInputReaderImpl;
+import advent_of_code.input_handling.TextFileReader;
 
 import java.nio.file.Path;
 
@@ -12,6 +12,6 @@ public class App {
     public static void main(String[] args) {
         InputReader inputReader = new TextFileInputReaderImpl(new TextFileReader(Path.of(DEPTHS_INPUT_TXT_PATH)));
         DepthIncreasesCounter counter = new SlidingWindowDepthIncreasesCounter();
-        System.out.println(counter.calculate(inputReader.processDepthsInput()));
+        System.out.println(counter.calculate(inputReader.processDepthInputs()));
     }
 }

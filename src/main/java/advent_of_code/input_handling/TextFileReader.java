@@ -1,4 +1,4 @@
-package day_1.input_handling;
+package advent_of_code.input_handling;
 
 
 import java.io.IOException;

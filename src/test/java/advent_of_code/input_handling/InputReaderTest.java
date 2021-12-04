@@ -1,4 +1,4 @@
-package day_1.input_handling;
+package advent_of_code.input_handling;
 
 
 import org.junit.jupiter.api.BeforeEach;
@@ -23,13 +23,20 @@ public class InputReaderTest {
     @Test
     public void whenInputContainsFourIntegers_ExpectIntegersGivenAndPreciseOrder() {
         when(testFileReader.readFile()).thenReturn("1\n2\n3\n4");
-        List<Integer> result = underTest.processDepthsInput();
+        List<Integer> result = underTest.processDepthInputs();
         assertThat(result).containsExactly(1, 2, 3, 4);
     }
     @Test
     public void whenInputContainsAnootherFourIntegers_ExpectIntegersGivenAndPreciseOrder() {
         when(testFileReader.readFile()).thenReturn("1\n3\n2\n4");
-        List<Integer> result = underTest.processDepthsInput();
+        List<Integer> result = underTest.processDepthInputs();
         assertThat(result).containsExactly(1, 3, 2, 4);
+    }
+
+    @Test
+    public void processStringInputs(){
+        when(testFileReader.readFile()).thenReturn("forward 1\ndown 3\nup 2");
+        List<String> result = underTest.processStringInputs();
+        assertThat(result).containsExactly("forward 1", "down 3", "up 2");
     }
 }
