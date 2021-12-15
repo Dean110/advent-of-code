@@ -8,7 +8,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 public class BingoBoard {
-    private List<Spot> spots;
+    private final List<Spot> spots;
 
     public BingoBoard(List<Integer> numbers) {
         spots = numbers.stream().map(number -> new Spot(number)).toList();
@@ -76,7 +76,7 @@ public class BingoBoard {
     }
 
     public class Spot {
-        private int number;
+        private final int number;
         private boolean marked;
 
         public Spot(Integer number) {

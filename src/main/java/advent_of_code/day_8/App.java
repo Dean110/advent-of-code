@@ -27,7 +27,6 @@ public class App {
                     .collect(Collectors.joining());
             total += Integer.parseInt(digitOutput);
         }
-        ;
         System.out.println(total);
     }
 }

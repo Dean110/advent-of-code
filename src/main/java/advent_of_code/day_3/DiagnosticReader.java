@@ -20,7 +20,7 @@ public class DiagnosticReader {
             int count = 0;
 
             for (String diagnostic :diagnostics){
-                if(diagnostic.substring(position, position + 1).equals("0")) count++;
+                if(diagnostic.charAt(position) == '0') count++;
             }
             if (count > diagnostics.size() - count) {
                 gammaRateBinary += "0";
@@ -44,11 +44,11 @@ public class DiagnosticReader {
 
         for(int i = 0; i < diagnosticLength && candidates.size()>1; i++){
             final int position = i;
-            int count = (int) candidates.stream().filter(str -> str.substring(position,position+1).equals("1")).count();
+            int count = (int) candidates.stream().filter(str -> str.charAt(position) == '1').count();
             if(count >= candidates.size() - count){
-                candidates = candidates.stream().filter(str -> str.substring(position,position+1).equals("1")).collect(Collectors.toList());
+                candidates = candidates.stream().filter(str -> str.charAt(position) == '1').collect(Collectors.toList());
             }else{
-                candidates = candidates.stream().filter(str -> str.substring(position,position+1).equals("0")).collect(Collectors.toList());
+                candidates = candidates.stream().filter(str -> str.charAt(position) == '0').collect(Collectors.toList());
             }
         }
 
@@ -60,11 +60,11 @@ public class DiagnosticReader {
 
         for(int i = 0; i < diagnosticLength && candidates.size()>1; i++){
             final int position = i;
-            int count = (int) candidates.stream().filter(str -> str.substring(position,position+1).equals("0")).count();
+            int count = (int) candidates.stream().filter(str -> str.charAt(position) == '0').count();
             if(count <= candidates.size() - count){
-                candidates = candidates.stream().filter(str -> str.substring(position,position+1).equals("0")).collect(Collectors.toList());
+                candidates = candidates.stream().filter(str -> str.charAt(position) == '0').collect(Collectors.toList());
             }else{
-                candidates = candidates.stream().filter(str -> str.substring(position,position+1).equals("1")).collect(Collectors.toList());
+                candidates = candidates.stream().filter(str -> str.charAt(position) == '1').collect(Collectors.toList());
             }
         }
 

@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
  */
 public class SevenSegmentDigitParser {
     private final List<String> signalPatterns;
-    private Map<String, String> displayDigits = new HashMap<>(); // signalPattern, String digit
+    private final Map<String, String> displayDigits = new HashMap<>(); // signalPattern, String digit
 
     public SevenSegmentDigitParser(String cipher) {
         signalPatterns = Arrays.stream(cipher.split(" "))

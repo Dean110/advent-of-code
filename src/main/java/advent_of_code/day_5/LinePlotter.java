@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LinePlotter {
-    private VentMap ventMap;
+    private final VentMap ventMap;
 
     public LinePlotter(VentMap map) {
         this.ventMap = map;

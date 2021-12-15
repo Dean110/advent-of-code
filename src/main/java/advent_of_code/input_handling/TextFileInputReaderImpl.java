@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class TextFileInputReaderImpl implements InputReader {
-    private TextFileReader fileReader;
+    private final TextFileReader fileReader;
 
     public TextFileInputReaderImpl(TextFileReader fileReader) {
         this.fileReader = fileReader;
