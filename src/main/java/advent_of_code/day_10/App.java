@@ -3,6 +3,7 @@ package advent_of_code.day_10;
 import advent_of_code.input_handling.TextFileReader;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 
 public class App {
@@ -16,28 +17,20 @@ public class App {
         InputValidator validator = new InputValidator();
 
         int total = 0;
+        List<Long> scores = new ArrayList<>();
         for (String input : lineInputs) {
             char invalidChar = validator.evaluateExpression(input, (char) 0);
-
-            switch (invalidChar) {
-                case ')':
-                    total += 3;
-                    break;
-                case ']':
-                    total += 57;
-                    break;
-                case '}':
-                    total += 1197;
-                    break;
-                case '>':
-                    total += 25137;
-                    break;
-            }
-
-
+            if (invalidChar != 0) continue;
+            long score = validator.completeLine(input, (char) 0);
+            scores.add(score);
         }
-        System.out.println(total);
+        System.out.println(scores);
+        long medianScore = (long) scores.stream().sorted().skip(Math.max(0, ((scores.size() + 1) / 2) - 1))
+                .limit(1 + (1 + scores.size()) % 2).mapToLong(Long::longValue).average().getAsDouble();
+        System.out.println(medianScore);
     }
+
 }
+
 
 
