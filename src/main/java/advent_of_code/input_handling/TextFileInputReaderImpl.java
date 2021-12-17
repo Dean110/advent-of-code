@@ -16,15 +16,16 @@ public class TextFileInputReaderImpl implements InputReader {
         String input = fileReader.readFile();
         String[] lineItems = input.split("\n");
         return Arrays.stream(lineItems)
-                .map(str -> Integer.parseInt(str))
-                .collect(Collectors.toList());
+                     .map(str -> Integer.parseInt(str))
+                     .collect(Collectors.toList());
     }
 
     @Override
     public List<String> processStringInputs() {
         return Arrays.stream(fileReader.readFile()
-                     .split("\n"))
-                     .toList().stream()
-                              .collect(Collectors.toList());
+                                       .split("\n"))
+                     .toList()
+                     .stream()
+                     .collect(Collectors.toList());
     }
 }

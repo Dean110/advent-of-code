@@ -6,7 +6,8 @@ public class SegmentSorter {
     public SegmentSorter(String cipher, Map<String, String> signalPatterns) {
 
     }
-    public Map<String, String> getSegmentMap(){
+
+    public Map<String, String> getSegmentMap() {
         return Map.of();
     }
 }

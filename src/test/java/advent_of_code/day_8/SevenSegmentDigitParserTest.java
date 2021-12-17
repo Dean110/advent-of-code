@@ -73,7 +73,7 @@ class SevenSegmentDigitParserTest {
         underTest = new SevenSegmentDigitParser(VANILLA_CIPHER);
         String result = underTest.parse(encodedDigit);
         assertThat(result)
-                .withFailMessage("Decoding for %s failed! :: Code - %s, Expected - %s", expected, encodedDigit ,result)
+                .withFailMessage("Decoding for %s failed! :: Code - %s, Expected - %s", expected, encodedDigit, result)
                 .isEqualTo(expected);
     }
 }

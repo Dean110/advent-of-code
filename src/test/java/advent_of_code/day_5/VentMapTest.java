@@ -16,11 +16,11 @@ class VentMapTest {
 
     @BeforeEach
     void setUp() {
-        underTest = new VentMap(10,10);
+        underTest = new VentMap(10, 10);
     }
 
     @Test
-    public void countOverlappedPoints(){
+    public void countOverlappedPoints() {
         int x = 0;
         int y = 0;
         createOverlappedPoint(x, y);
@@ -29,9 +29,9 @@ class VentMapTest {
 
 
     @Test
-    public void countAnotherSetOfOverLappedPoints(){
+    public void countAnotherSetOfOverLappedPoints() {
         createOverlappedPoint(0, 0);
-        createOverlappedPoint(0,1);
+        createOverlappedPoint(0, 1);
         assertThat(underTest.countOverlappedPoints()).isEqualTo(2);
     }
 }

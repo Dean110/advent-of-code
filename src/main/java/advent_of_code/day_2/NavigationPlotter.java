@@ -7,17 +7,17 @@ public class NavigationPlotter {
         int horizontalPosition = 0;
         int depth = 0;
         int aim = 0;
-        for(String command: commands){
-            if(command.contains("forward")){
-                int value = Integer.valueOf(command.substring(command.indexOf(' ') + 1 ));
+        for (String command : commands) {
+            if (command.contains("forward")) {
+                int value = Integer.valueOf(command.substring(command.indexOf(' ') + 1));
                 horizontalPosition += value;
                 depth += value * aim;
-            }else if(command.contains("down")){
+            } else if (command.contains("down")) {
                 aim += Integer.valueOf(command.substring(command.indexOf(' ') + 1));
-            }else{
+            } else {
                 aim -= Integer.valueOf(command.substring(command.indexOf(' ') + 1));
             }
         }
-        return horizontalPosition* depth;
+        return horizontalPosition * depth;
     }
 }

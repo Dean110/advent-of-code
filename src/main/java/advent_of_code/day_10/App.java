@@ -1,17 +1,13 @@
 package advent_of_code.day_10;
 
-import advent_of_code.input_handling.TextFileReader;
-
-import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class App {
     public static final String INPUT_TXT_PATH = "src/main/resources/inputs.txt";
 
     public static void main(String[] args) {
-        System.out.println(Arrays.stream("HI".split("")).toList());
+        System.out.println(Arrays.stream("HI".split(""))
+                                 .toList());
 //        TextFileReader inputReader = new TextFileReader(Path.of(INPUT_TXT_PATH));
 //
 //        List<String> lineInputs = List.of(inputReader.readFile().split("\n"));

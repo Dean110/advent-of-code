@@ -1,7 +1,5 @@
 package advent_of_code.day_4;
 
-import advent_of_code.day_3.DiagnosticReader;
-import advent_of_code.input_handling.InputReader;
 import advent_of_code.input_handling.TextFileReader;
 
 import java.nio.file.Path;

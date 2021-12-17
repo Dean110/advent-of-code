@@ -11,9 +11,10 @@ public class VentMap {
     }
 
     public int countOverlappedPoints() {
-        return (int) Arrays.stream(map).flatMapToInt(Arrays::stream)
-                .filter(count -> count >= 2)
-                .count();
+        return (int) Arrays.stream(map)
+                           .flatMapToInt(Arrays::stream)
+                           .filter(count -> count >= 2)
+                           .count();
     }
 
     public void plotPoint(int x, int y) {

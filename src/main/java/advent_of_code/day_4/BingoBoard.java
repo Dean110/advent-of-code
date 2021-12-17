@@ -11,12 +11,17 @@ public class BingoBoard {
     private final List<Spot> spots;
 
     public BingoBoard(List<Integer> numbers) {
-        spots = numbers.stream().map(number -> new Spot(number)).toList();
+        spots = numbers.stream()
+                       .map(number -> new Spot(number))
+                       .toList();
     }
 
     public void markNumber(int number) {
-        Optional<Spot> spotCandidate = spots.stream().filter(spot -> spot.getNumber() == number).findFirst();
-        if (spotCandidate.isPresent()) spotCandidate.get().mark();
+        Optional<Spot> spotCandidate = spots.stream()
+                                            .filter(spot -> spot.getNumber() == number)
+                                            .findFirst();
+        if (spotCandidate.isPresent()) spotCandidate.get()
+                                                    .mark();
     }
 
     public boolean isAWinner() {
@@ -27,28 +32,30 @@ public class BingoBoard {
         int chunkSize = 5;
         AtomicInteger counter = new AtomicInteger();
         Collection<List<Spot>> rows = spots.stream()
-                .collect(Collectors.groupingBy(spot -> counter.getAndIncrement() / chunkSize))
-                .values();
+                                           .collect(Collectors.groupingBy(spot -> counter.getAndIncrement() / chunkSize))
+                                           .values();
         return rows.stream()
-                .filter(row -> row.stream()
-                        .filter(spot -> !spot.isMarked())
-                        .findFirst().isEmpty())
-                .findFirst()
-                .isPresent();
+                   .filter(row -> row.stream()
+                                     .filter(spot -> !spot.isMarked())
+                                     .findFirst()
+                                     .isEmpty())
+                   .findFirst()
+                   .isPresent();
     }
 
     private boolean evaluateColumnsForWinner() {
         int chunkSize = 5;
         AtomicInteger counter = new AtomicInteger();
         Collection<List<Spot>> columns = spots.stream()
-                .collect(Collectors.groupingBy(spot -> counter.getAndIncrement() % chunkSize))
-                .values();
+                                              .collect(Collectors.groupingBy(spot -> counter.getAndIncrement() % chunkSize))
+                                              .values();
         return columns.stream()
-                .filter(row -> row.stream()
-                        .filter(spot -> !spot.isMarked())
-                        .findFirst().isEmpty())
-                .findFirst()
-                .isPresent();
+                      .filter(row -> row.stream()
+                                        .filter(spot -> !spot.isMarked())
+                                        .findFirst()
+                                        .isEmpty())
+                      .findFirst()
+                      .isPresent();
     }
 
     public List<Spot> getSpots() {

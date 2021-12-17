@@ -73,25 +73,27 @@ public class InputValidator {
         }
 
         long score = 0;
-        for ( char completionSymbol: completionSymbols){
+        for (char completionSymbol : completionSymbols) {
             score = score * 5;
             System.out.println(score);
             score += getSymbolScore(completionSymbol);
             System.out.println(score);
         }
-        System.out.println(completionSymbols.stream().map(String::valueOf).collect(Collectors.joining()));
+        System.out.println(completionSymbols.stream()
+                                            .map(String::valueOf)
+                                            .collect(Collectors.joining()));
         System.out.println(score);
         return score;
     }
 
     private int getSymbolScore(char symbol) {
         System.out.println(symbol);
-        System.out.println(switch(symbol) {
-        case ')' -> 1;
-        case ']' -> 2;
-        case '}' -> 3;
-        case '>' -> 4;
-        default -> 0;
+        System.out.println(switch (symbol) {
+            case ')' -> 1;
+            case ']' -> 2;
+            case '}' -> 3;
+            case '>' -> 4;
+            default -> 0;
         });
         return switch (symbol) {
             case ')' -> 1;

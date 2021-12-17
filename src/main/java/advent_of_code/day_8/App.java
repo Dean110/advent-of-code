@@ -14,7 +14,8 @@ public class App {
     public static void main(String[] args) {
         TextFileReader inputReader = new TextFileReader(Path.of(INPUT_TXT_PATH));
 
-        List<String> lineInputs = List.of(inputReader.readFile().split("\n"));
+        List<String> lineInputs = List.of(inputReader.readFile()
+                                                     .split("\n"));
 
         int total = 0;
         for (String input : lineInputs) {
@@ -23,8 +24,8 @@ public class App {
             String encodedOutput = inputParts[1];
             SevenSegmentDigitParser parser = new SevenSegmentDigitParser(cipher);
             String digitOutput = Arrays.stream(encodedOutput.split(" "))
-                    .map(pattern -> parser.parse(pattern))
-                    .collect(Collectors.joining());
+                                       .map(pattern -> parser.parse(pattern))
+                                       .collect(Collectors.joining());
             total += Integer.parseInt(digitOutput);
         }
         System.out.println(total);

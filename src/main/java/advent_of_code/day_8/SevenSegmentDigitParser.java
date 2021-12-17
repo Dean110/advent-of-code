@@ -12,8 +12,8 @@ public class SevenSegmentDigitParser {
 
     public SevenSegmentDigitParser(String cipher) {
         signalPatterns = Arrays.stream(cipher.split(" "))
-                .sorted(Comparator.comparingInt(String::length))
-                .collect(Collectors.toList());
+                               .sorted(Comparator.comparingInt(String::length))
+                               .collect(Collectors.toList());
         populateMaps();
     }
 
@@ -38,7 +38,10 @@ public class SevenSegmentDigitParser {
         populateComparableDigits("6", 6, "1", 6);
         populateComparableDigits("0", 6, "1", 4);
         populateComparableDigits("2", 5, "4", 5);
-        displayDigits.put("5", signalPatterns.stream().filter(p -> p.length() == 5).findFirst().get());
+        displayDigits.put("5", signalPatterns.stream()
+                                             .filter(p -> p.length() == 5)
+                                             .findFirst()
+                                             .get());
     }
 
 
@@ -52,12 +55,12 @@ public class SevenSegmentDigitParser {
     private void populateComparableDigits(String targetDigit, int targetDigitPatternLength, String keyDigit, int differenceCount) {
         String keyPattern = displayDigits.get(keyDigit);
         List<String> candidatePatterns = signalPatterns.stream()
-                .filter(pattern -> pattern.length() == targetDigitPatternLength)
-                .toList();
+                                                       .filter(pattern -> pattern.length() == targetDigitPatternLength)
+                                                       .toList();
         String foundPattern = candidatePatterns.stream()
-                .filter(ptrn -> differingSegmentsCount(keyPattern, ptrn) == differenceCount)
-                .findFirst()
-                .get();
+                                               .filter(ptrn -> differingSegmentsCount(keyPattern, ptrn) == differenceCount)
+                                               .findFirst()
+                                               .get();
         displayDigits.put(targetDigit, foundPattern);
         signalPatterns.remove(foundPattern);
     }
@@ -74,11 +77,11 @@ public class SevenSegmentDigitParser {
 
     public String parse(String signalPattern) {
         return displayDigits.entrySet()
-                .stream()
-                .filter(entry -> differingSegmentsCount(entry.getValue(), signalPattern) == 0)
-                .findFirst()
-                .get()
-                .getKey();
+                            .stream()
+                            .filter(entry -> differingSegmentsCount(entry.getValue(), signalPattern) == 0)
+                            .findFirst()
+                            .get()
+                            .getKey();
     }
 
 

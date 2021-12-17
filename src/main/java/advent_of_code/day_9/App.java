@@ -12,18 +12,23 @@ public class App {
     public static void main(String[] args) {
         TextFileReader inputReader = new TextFileReader(Path.of(INPUT_TXT_PATH));
 
-        List<String> lineInputs = List.of(inputReader.readFile().split("\n"));
+        List<String> lineInputs = List.of(inputReader.readFile()
+                                                     .split("\n"));
 
         integerGrid = lineInputs.stream()
-                .map(str -> str.split(""))
-                .toList()
-                .stream()
-                .map(array -> Arrays.stream(array).map(Integer::parseInt).toList())
-                .toList();
+                                .map(str -> str.split(""))
+                                .toList()
+                                .stream()
+                                .map(array -> Arrays.stream(array)
+                                                    .map(Integer::parseInt)
+                                                    .toList())
+                                .toList();
         List<Integer> basinSizes = new ArrayList<>();
         for (int verticalIndex = 0; verticalIndex < integerGrid.size(); verticalIndex++) {
-            for (int horizontalIndex = 0; horizontalIndex < integerGrid.get(0).size(); horizontalIndex++) {
-                int candidate = integerGrid.get(verticalIndex).get(horizontalIndex);
+            for (int horizontalIndex = 0; horizontalIndex < integerGrid.get(0)
+                                                                       .size(); horizontalIndex++) {
+                int candidate = integerGrid.get(verticalIndex)
+                                           .get(horizontalIndex);
                 System.out.println(String.format("V Index: %d, H Index: %d", verticalIndex, horizontalIndex));
                 if (isBottomRightCorner(verticalIndex, horizontalIndex)) {
                     if (candidate < toTheLeft(verticalIndex, horizontalIndex) &&
@@ -41,8 +46,10 @@ public class App {
                     continue;
                 }
                 if (isUpperLeftCorner(verticalIndex, horizontalIndex)) {
-                    if (candidate < integerGrid.get(verticalIndex).get(horizontalIndex + 1) &&
-                            candidate < integerGrid.get(verticalIndex + 1).get(horizontalIndex)) {
+                    if (candidate < integerGrid.get(verticalIndex)
+                                               .get(horizontalIndex + 1) &&
+                            candidate < integerGrid.get(verticalIndex + 1)
+                                                   .get(horizontalIndex)) {
                         calculateBasinSize(basinSizes, verticalIndex, horizontalIndex);
                     }
                     continue;
@@ -96,7 +103,11 @@ public class App {
             }
         }
 
-        System.out.println(basinSizes.stream().sorted(Collections.reverseOrder()).limit(3).mapToInt(Integer::intValue).reduce(1, (a,b)-> a * b));
+        System.out.println(basinSizes.stream()
+                                     .sorted(Collections.reverseOrder())
+                                     .limit(3)
+                                     .mapToInt(Integer::intValue)
+                                     .reduce(1, (a, b) -> a * b));
     }
 
     private static void calculateBasinSize(List<Integer> basinSizes, int verticalIndex, int horizontalIndex) {
@@ -108,30 +119,28 @@ public class App {
         Integer basinSpotValue = getGridPositionValue(verticalIndex, horizontalIndex);
         if (basinSpotValue != 9) {
             basinSpots.put(new Coordinate(verticalIndex, horizontalIndex), basinSpotValue);
-        }else return 0;
+        } else return 0;
 
         if (basinSpotValue < toTheLeft(verticalIndex, horizontalIndex)) {
             countBasinSpots(verticalIndex, horizontalIndex - 1, basinSpots);
         }
-        if(basinSpotValue < toTheTop(verticalIndex,horizontalIndex)){
+        if (basinSpotValue < toTheTop(verticalIndex, horizontalIndex)) {
             countBasinSpots(verticalIndex - 1, horizontalIndex, basinSpots);
         }
-        if(basinSpotValue < toTheRight(verticalIndex, horizontalIndex)){
-            countBasinSpots(verticalIndex, horizontalIndex+1, basinSpots);
+        if (basinSpotValue < toTheRight(verticalIndex, horizontalIndex)) {
+            countBasinSpots(verticalIndex, horizontalIndex + 1, basinSpots);
         }
-        if(basinSpotValue < toTheBottom(verticalIndex,horizontalIndex)){
-            countBasinSpots(verticalIndex+1,horizontalIndex, basinSpots);
+        if (basinSpotValue < toTheBottom(verticalIndex, horizontalIndex)) {
+            countBasinSpots(verticalIndex + 1, horizontalIndex, basinSpots);
         }
         return basinSpots.size();
     }
 
-    public record Coordinate(int verticalIndex, int horizontalIndex){}
-
-    ;
-
     private static boolean isFirstVerticalColumn(int horizontalIndex) {
         return horizontalIndex == 0;
     }
+
+    ;
 
     private static int toTheBottom(int verticalIndex, int horizontalIndex) {
         return getGridPositionValue(verticalIndex + 1, horizontalIndex);
@@ -144,7 +153,6 @@ public class App {
     private static boolean isTopRow(int verticalIndex) {
         return verticalIndex == 0;
     }
-
 
     private static Integer toTheLeft(int verticalIndex, int horizontalIndex) {
         return getGridPositionValue(verticalIndex, horizontalIndex - 1);
@@ -165,7 +173,8 @@ public class App {
     private static Integer getGridPositionValue(int verticalIndex, int horizontalIndex) {
         int value = 0;
         try {
-            value += integerGrid.get(verticalIndex).get(horizontalIndex);
+            value += integerGrid.get(verticalIndex)
+                                .get(horizontalIndex);
         } catch (Exception e) {
             return 9;
         }
@@ -177,7 +186,8 @@ public class App {
     }
 
     private static boolean isLastHorizontalRow(int horizontalIndex) {
-        return horizontalIndex == integerGrid.get(0).size() - 1;
+        return horizontalIndex == integerGrid.get(0)
+                                             .size() - 1;
     }
 
     private static boolean isLastVerticalRow(int verticalIndex) {
@@ -186,6 +196,9 @@ public class App {
 
     private static boolean isUpperLeftCorner(int verticalIndex, int horizontalIndex) {
         return verticalIndex == 0 && horizontalIndex == 0;
+    }
+
+    public record Coordinate(int verticalIndex, int horizontalIndex) {
     }
 }
 

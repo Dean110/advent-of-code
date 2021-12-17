@@ -6,25 +6,26 @@ import java.util.List;
 public class BingoInputParser {
     public List<Integer> parseCalledNumbers(String input) {
         return Arrays.stream(Arrays.stream(input.split("\n\n"))
-                        .toList()
-                        .get(0)
-                        .split(","))
-                .map(str -> Integer.parseInt(str.trim()))
-                .toList();
+                                   .toList()
+                                   .get(0)
+                                   .split(","))
+                     .map(str -> Integer.parseInt(str.trim()))
+                     .toList();
     }
 
     public List<BingoBoard> parseBingoCards(String input) {
         int sectionSplitIndex = input.indexOf("\n\n");
-        String choppedInput = input.substring(sectionSplitIndex).trim();
+        String choppedInput = input.substring(sectionSplitIndex)
+                                   .trim();
         List<String> boardInputs = Arrays.asList(choppedInput.split("\n\n"));
         return boardInputs.stream()
-                .map(str -> Arrays.stream(str.split("\\s+"))
-                        .filter(string -> !string.isBlank())
-                        .map(number -> Integer.parseInt(number.trim()))
-                        .toList()
-                )
-                .map(numbers -> new BingoBoard(numbers))
-                .toList();
+                          .map(str -> Arrays.stream(str.split("\\s+"))
+                                            .filter(string -> !string.isBlank())
+                                            .map(number -> Integer.parseInt(number.trim()))
+                                            .toList()
+                          )
+                          .map(numbers -> new BingoBoard(numbers))
+                          .toList();
     }
 
     public int scoreInput(String input) {
@@ -33,15 +34,18 @@ public class BingoInputParser {
         BingoBoard lastBoard = boards.get(0);
         for (int number : calledNumbers) {
             boards.forEach(board -> board.markNumber(number));
-            boards = boards.stream().filter(bingoBoard -> !bingoBoard.isAWinner()).toList();
+            boards = boards.stream()
+                           .filter(bingoBoard -> !bingoBoard.isAWinner())
+                           .toList();
             if (boards.size() == 1) {
                 lastBoard = boards.get(0);
             }
             if (boards.isEmpty()) {
-                int boardScore = lastBoard.getSpots().stream()
-                        .filter(spot -> !spot.isMarked())
-                        .map(spot -> spot.getNumber())
-                        .reduce(0, (a, b) -> a + b);
+                int boardScore = lastBoard.getSpots()
+                                          .stream()
+                                          .filter(spot -> !spot.isMarked())
+                                          .map(spot -> spot.getNumber())
+                                          .reduce(0, (a, b) -> a + b);
                 return boardScore * number;
             }
         }

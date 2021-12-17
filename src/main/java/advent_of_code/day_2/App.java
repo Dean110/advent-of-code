@@ -1,7 +1,5 @@
 package advent_of_code.day_2;
 
-import advent_of_code.day_1.DepthIncreasesCounter;
-import advent_of_code.day_1.SlidingWindowDepthIncreasesCounter;
 import advent_of_code.input_handling.InputReader;
 import advent_of_code.input_handling.TextFileInputReaderImpl;
 import advent_of_code.input_handling.TextFileReader;

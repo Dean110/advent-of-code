@@ -12,11 +12,11 @@ public class Fish {
         return daysToSpawn;
     }
 
-    public void ageFish(){
+    public void ageFish() {
         daysToSpawn--;
     }
 
-    public void resetSpawnCounter(){
+    public void resetSpawnCounter() {
         daysToSpawn = 6;
     }
 

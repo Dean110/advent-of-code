@@ -20,29 +20,39 @@ public class LinePlotter {
     private List<PlotPoint> parseInputs(List<String> inputs) {
         List<Line> lines = parseLines(inputs);
 
-        List<Line> orientatedLines = lines.stream().map(l -> orientLine(l)).toList();
+        List<Line> orientatedLines = lines.stream()
+                                          .map(l -> orientLine(l))
+                                          .toList();
 
         List<PlotPoint> plotPoints = new ArrayList<>();
         for (Line line : orientatedLines) {
             if (isHorizontal(line)) {
-                int startingX = line.getStartingPlot().getX();
-                int endingX = line.getEndingPlot().getX();
+                int startingX = line.getStartingPlot()
+                                    .getX();
+                int endingX = line.getEndingPlot()
+                                  .getX();
 
                 for (int i = startingX; i <= endingX; i++) {
                     plotPoints.add(new PlotPoint(i, line.startingPlot.getY()));
                 }
             } else if (isVertical(line)) {
-                int startingY = line.getStartingPlot().getY();
-                int endingY = line.getEndingPlot().getY();
+                int startingY = line.getStartingPlot()
+                                    .getY();
+                int endingY = line.getEndingPlot()
+                                  .getY();
 
                 for (int i = startingY; i <= endingY; i++) {
                     plotPoints.add(new PlotPoint(line.startingPlot.getX(), i));
                 }
             } else {
-                int startingX = line.getStartingPlot().getX();
-                int endingX = line.getEndingPlot().getX();
-                int startingY = line.getStartingPlot().getY();
-                int endingY = line.getEndingPlot().getY();
+                int startingX = line.getStartingPlot()
+                                    .getX();
+                int endingX = line.getEndingPlot()
+                                  .getX();
+                int startingY = line.getStartingPlot()
+                                    .getY();
+                int endingY = line.getEndingPlot()
+                                  .getY();
                 int yCounter = startingY;
                 for (int x = startingX; x <= endingX; x++) {
                     plotPoints.add(new PlotPoint(x, yCounter));

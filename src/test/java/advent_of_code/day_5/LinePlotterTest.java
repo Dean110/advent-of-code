@@ -22,47 +22,47 @@ public class LinePlotterTest {
     @Test
     public void plotLines1() {
         assertOverlappedPoints(1, """
-                0,1 -> 0,2
-                0,0 -> 0,1
-                """);
+                                  0,1 -> 0,2
+                                  0,0 -> 0,1
+                                  """);
     }
 
     @Test
     public void plotLines2() {
         assertOverlappedPoints(2, """
-                0,1 -> 0,2
-                0,0 -> 0,1
-                0,1 -> 0,2
-                """);
+                                  0,1 -> 0,2
+                                  0,0 -> 0,1
+                                  0,1 -> 0,2
+                                  """);
     }
 
     @Test
     public void plotLines3() {
         assertOverlappedPoints(3, """
-                0,1 -> 0,2
-                0,0 -> 0,1
-                0,0 -> 0,2
-                """);
+                                  0,1 -> 0,2
+                                  0,0 -> 0,1
+                                  0,0 -> 0,2
+                                  """);
     }
 
     @Test
     public void plotLines4() {
         assertOverlappedPoints(3, """
-                0,2 -> 0,1
-                0,0 -> 0,1
-                0,0 -> 0,2
-                """);
+                                  0,2 -> 0,1
+                                  0,0 -> 0,1
+                                  0,0 -> 0,2
+                                  """);
     }
 
     @Test
     public void plotLines5() {
         assertOverlappedPoints(4, """
-                0,2 -> 0,1
-                0,0 -> 0,1
-                0,0 -> 0,2
-                1,0 -> 0,1
-                1,0 -> 1,1
-                """);
+                                  0,2 -> 0,1
+                                  0,0 -> 0,1
+                                  0,0 -> 0,2
+                                  1,0 -> 0,1
+                                  1,0 -> 1,1
+                                  """);
     }
 
     private void assertOverlappedPoints(int expected, String rawInput) {
@@ -72,6 +72,7 @@ public class LinePlotterTest {
     }
 
     private List<String> parseRawInput(String rawInput) {
-        return Arrays.stream(rawInput.split("\n")).toList();
+        return Arrays.stream(rawInput.split("\n"))
+                     .toList();
     }
 }

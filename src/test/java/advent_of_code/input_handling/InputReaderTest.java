@@ -7,7 +7,8 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class InputReaderTest {
     public static final String END_OF_LINE = System.getProperty("line.separator");
@@ -26,6 +27,7 @@ public class InputReaderTest {
         List<Integer> result = underTest.processDepthInputs();
         assertThat(result).containsExactly(1, 2, 3, 4);
     }
+
     @Test
     public void whenInputContainsAnootherFourIntegers_ExpectIntegersGivenAndPreciseOrder() {
         when(testFileReader.readFile()).thenReturn("1\n3\n2\n4");
@@ -34,7 +36,7 @@ public class InputReaderTest {
     }
 
     @Test
-    public void processStringInputs(){
+    public void processStringInputs() {
         when(testFileReader.readFile()).thenReturn("forward 1\ndown 3\nup 2");
         List<String> result = underTest.processStringInputs();
         assertThat(result).containsExactly("forward 1", "down 3", "up 2");

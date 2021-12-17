@@ -16,14 +16,14 @@ import static advent_of_code.day_8.SevenSegmentDigitParserTest.VANILLA_CIPHER;
 
 public class SegmentSorterTest {
     public static final Map<String, String> VANILLA_ENCODED_DIGITS = Map.of(
-            "abcefg",  "0",
-            "cf",      "1",
-            "acdeg",   "2",
-            "acdfg",   "3",
-            "bcdf",    "4",
-            "abdfg",   "5",
-            "abdefg",  "6",
-            "acf",     "7",
+            "abcefg", "0",
+            "cf", "1",
+            "acdeg", "2",
+            "acdfg", "3",
+            "bcdf", "4",
+            "abdfg", "5",
+            "abdefg", "6",
+            "acf", "7",
             "abcdefg", "8",
             "abcdfg", "9");
 
@@ -35,7 +35,7 @@ public class SegmentSorterTest {
     }
 
     @Test
-    public void checkSegments(){
+    public void checkSegments() {
         Map<String, String> segmentMap = underTest.getSegmentMap();
 //        assertThat(segmentMap.)
     }
