@@ -5,6 +5,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 class GridTest {
     public static final String VANILLA_GRID_INPUT = """
                                                     123
@@ -42,20 +45,26 @@ class GridTest {
     @Test
     @DisplayName("Grid should return Integer.MIN_VALUE if a direction is given that is invalid.")
     void gridShouldReturnIntegerMinValueIfADirectionIsGivenThatIsInvalid() {
-        fetchNeighboringValueAssertion(0, 0, "NW", Integer.MIN_VALUE);
-        fetchNeighboringValueAssertion(0, 0, "FR", Integer.MIN_VALUE);
+        assertAll(
+                () -> fetchNeighboringValueExceptionAssertion(0, 0, "NW", Integer.MIN_VALUE),
+                () -> fetchNeighboringValueExceptionAssertion(0, 0, "FR", Integer.MIN_VALUE)
+        );
     }
 
     private void fetchNeighboringValueAssertion(int x, int y, String direction, int expected) {
         Grid underTest = new Grid(VANILLA_GRID_INPUT);
         int result = underTest.fetchNeighboringValue(x, y, direction);
-        softly.assertThat(result)
-              .isEqualTo(expected);
+        softly.assertThat(result).isEqualTo(expected);
+    }
+
+    private void fetchNeighboringValueExceptionAssertion(int x, int y, String direction, int expected) {
+        Grid underTest = new Grid(VANILLA_GRID_INPUT);
+        assertThrows(RuntimeException.class, () -> underTest.fetchNeighboringValue(x, y, direction));
     }
 
     private void gridCoordinateAssertion(int x, int y, int expected, String gridData) {
         Grid underTest = new Grid(gridData);
-        int result = underTest.getCoordinateValue(x, y);
+        int result = underTest.getValueAtCoordinate(x, y);
         softly.assertThat(result)
               .isEqualTo(expected);
     }
