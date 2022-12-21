@@ -1,5 +1,5 @@
 plugins {
-	id 'java'
+    id 'java'
 }
 
 group = 'dev.benwilliams'
@@ -7,19 +7,19 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '17'
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
-	testImplementation(platform('org.junit:junit-bom:5.8.2'))
-	testImplementation('org.junit.jupiter:junit-jupiter')
-	testImplementation('org.assertj:assertj-core:3.+')
-	testImplementation('org.mockito:mockito-core:2.+')
+    testImplementation(platform('org.junit:junit-bom:5.8.2'))
+    testImplementation('org.junit.jupiter:junit-jupiter')
+    testImplementation('org.assertj:assertj-core:3.+')
+    testImplementation('org.mockito:mockito-core:2.+')
 }
 
 test {
-	useJUnitPlatform()
-	testLogging {
-		events "passed", "skipped", "failed"
-	}
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
 }
